@@ -10,13 +10,38 @@ import play.data.validation.*;
 @Entity
 public class Course extends Model {
 
+    public static Finder<Long, Course> find = new Finder<Long,Course>(Course.class);
+
     @Id
-    public Long id;
+    private Long id;
 
     @Constraints.Required
-    public String name;
+    private String name;
 
+    @ManyToMany( targetEntity=Student.class )
+    private List<Student> students;
 
+    public Long getId() {
+        return id;
+    }
 
-    public static Finder<Long, Student> find = new Finder<Long,Student>(Student.class);
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 }
