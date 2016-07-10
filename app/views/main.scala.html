@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String)(JSFile: String)(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +18,18 @@
 
         <script src="@routes.Assets.versioned("javascripts/jquery-1.12.4.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
+        @if(JSFile != null) {
+            <script src="@routes.Assets.versioned("javascripts/"+JSFile+".js")" type="text/javascript"></script>
+        }
+
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("chosen/chosen.min.css")">
+        <script src="@routes.Assets.versioned("chosen/chosen.jquery.min.js")" type="text/javascript"></script>
 
     </head>
     <body>
-        @content
+        @navbar(title)
+        <div class="container-fluid">
+            @content
+        </div>
     </body>
 </html>

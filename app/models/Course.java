@@ -37,6 +37,7 @@ public class Course extends Model {
         this.name = name;
     }
 
+
     public List<Student> getStudents() {
         return students;
     }
@@ -44,4 +45,5 @@ public class Course extends Model {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
 }

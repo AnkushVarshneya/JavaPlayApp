@@ -1,0 +1,118 @@
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is an `Html` object containing the body of the page.
+*@
+@main("Student-Course Application")("courses") {
+
+<table class="table table-hover" id="courses">
+    <caption>
+        Courses
+        <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#createModel">Create</button>
+    </caption>
+    <tr><th>ID</th><th>Name</th><th>Students</th><th>Action</th></tr>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="createModel" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="@routes.Application.createCourse()" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create New Course</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="id">Id:</label>
+                        <input type="text" name="id" class="form-control" value="Auto-Generated" disabled/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="students[]">Students:</label>
+                        <select name="students[]" multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-info" value="Create"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateModel" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="@routes.Application.updateCourse()" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Update Course</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="id">Id:</label>
+                        <input type="text" name="id" class="form-control" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="students[]">Students:</label>
+                        <select name="students[]" multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-info" value="Update"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModel" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form action="@routes.Application.deleteCourse()" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Course</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="id">Id:</label>
+                        <input type="text" name="id" class="form-control" readonly/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="students[]">Students:</label>
+                        <select name="students[]" multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-info" value="Delete"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+}
