@@ -26,15 +26,14 @@ $( document ).ready(function() {
         })
     });
 
-    $('#createModel, #updateModel, #deleteModel').on('show.bs.modal', function(e) {
-        $.getJSON("/getCourses", function(data){
-            $.each(data, function(k,v) {
-                $(e.currentTarget).find('select[name="courses[]"]')
-                    .append($("<option></option>")
-                    .attr("value",v)
-                    .text(v.name));
-            })
-        });
-        //$(e.currentTarget).find('select[name="courses[]"]').chosen({no_results_text: "Oops, nothing found!", width: "100%"});
+    $.getJSON("/getCourses", function(data){
+        $.each(data, function(k,v) {
+            $('#createModel, #updateModel, #deleteModel').find('select[name="courses[]"]')
+                .append($("<option></option>")
+                .attr("value",v)
+                .text(v.name));
+        })
     });
+
+    //$('#createModel, #updateModel, #deleteModel').find('select[name="courses[]"]').chosen({no_results_text: "Oops, nothing found!", width: "100%"});
 });
