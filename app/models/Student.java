@@ -19,7 +19,11 @@ public class Student extends Model {
     private String name;
 
     @ManyToMany( targetEntity=Course.class )
-    private List<Course> Courses;
+    @JoinTable(
+            name="Student_Enroll",
+            joinColumns=@JoinColumn(name="sid", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="cid", referencedColumnName="id"))
+    private List<Course> courses;
 
     public Long getId() {
         return id;
@@ -38,10 +42,10 @@ public class Student extends Model {
     }
 
     public List<Course> getCourses() {
-        return Courses;
+        return courses;
     }
 
     public void setCourses(List<Course> courses) {
-        Courses = courses;
+        this.courses = courses;
     }
 }

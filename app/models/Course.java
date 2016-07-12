@@ -19,6 +19,10 @@ public class Course extends Model {
     private String name;
 
     @ManyToMany( targetEntity=Student.class )
+    @JoinTable(
+            name="Student_Enroll",
+            joinColumns=@JoinColumn(name="cid", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="sid", referencedColumnName="id"))
     private List<Student> students;
 
     public Long getId() {

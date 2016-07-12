@@ -28,12 +28,12 @@ $( document ).ready(function() {
 
     $.getJSON("/getStudents", function(data){
         $.each(data, function(k,v) {
-            $('#createModel, #updateModel, #deleteModel').find('select[name="students[]"]')
+            $('#createModel, #updateModel, #deleteModel').find('select[name="course.students[]"]')
                 .append($("<option></option>")
-                .attr("value",v)
+                .attr("value",v.id)
                 .text(v.name));
         })
     });
 
-    //$('#createModel, #updateModel, #deleteModel').find('select[name="students[]"]').chosen({no_results_text: "Oops, nothing found!", width: "100%"});
+    //$('#createModel, #updateModel, #deleteModel').find('select[name="course.students[]"]').chosen({no_results_text: "Oops, nothing found!", width: "100%"});
 });

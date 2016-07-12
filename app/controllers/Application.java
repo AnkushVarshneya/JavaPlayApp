@@ -77,6 +77,20 @@ public class Application extends Controller {
 
     public Result createCourse() {
         Course course = formFactory.form(Course.class).bindFromRequest().get();
+
+        // manually fill the many-to-many relationship
+        java.util.Map<String, String[]> urlFormEncoded = play.mvc.Controller.request().body().asFormUrlEncoded();
+        if (urlFormEncoded != null) {
+            for(String val: urlFormEncoded.get("course.students[]")) {
+
+                Long id = new Long(val);
+                course.getStudents().clear();
+                course.getStudents().add(Student.find.byId(id));
+
+                play.Logger.debug(val);
+            }
+        }
+
         course.save();
         return redirect(routes.Application.courses());
     }
